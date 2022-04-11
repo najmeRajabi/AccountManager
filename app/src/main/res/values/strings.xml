@@ -2,4 +2,10 @@
     <string name="app_name">AccountManager</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fullName">نام و نام خانوادگی:</string>
+    <string name="faderName">نام پدر:</string>
+    <string name="phoneNumber">شماره تلفن:</string>
+    <string name="postcode">کد پستی:</string>
+    <string name="register">ثبت اطلاعات</string>
+    <string name="slider_desc">تعداد حساب هایی که مایل به ذخیره آن هستید:</string>
 </resources>
