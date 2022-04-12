@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/colorSecondary"
     tools:context=".profile.ShowProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:text="@string/fullName"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_name"
+            android:text="@string/fullName"
+            style="@style/textFiledStyle.editText.show" />
+
+        <TextView
+            android:text="@string/faderName"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_fader_name"
+            android:text="@string/faderName"
+            style="@style/textFiledStyle.editText.show" />
+
+        <TextView
+            android:text="@string/postcode"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_postcode"
+            android:text="@string/postcode"
+            style="@style/textFiledStyle.editText.show" />
+
+        <TextView
+            android:text="@string/phoneNumber"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_phone"
+            android:text="@string/phoneNumber"
+            style="@style/textFiledStyle.editText.show" />
+    </LinearLayout>
+
+
+</ScrollView>
