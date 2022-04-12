@@ -11,4 +11,8 @@
     <string name="messageError">\" فیلد اجباری \"</string>
     <string name="incorrectMessageError">لطفا شماره را صحیح وارد کنید</string>
     <string name="edit">ویرایش</string>
+    <string name="createAccount">افزودن حساب</string>
+    <string name="accountType">نوع حساب</string>
+    <string name="accountNumber">شماره حساب</string>
+    <string name="accountStock">"موجودی "</string>
 </resources>
