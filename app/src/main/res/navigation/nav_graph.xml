@@ -9,5 +9,14 @@
         android:id="@+id/editProfileFragment"
         android:name="com.example.accountmanager.profile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_showProfileFragment"
+            app:destination="@id/showProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showProfileFragment"
+        android:name="com.example.accountmanager.profile.ShowProfileFragment"
+        android:label="fragment_show_profile"
+        tools:layout="@layout/fragment_show_profile" />
 </navigation>
