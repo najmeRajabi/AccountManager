@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.isDigitsOnly
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentEditProfileBinding
@@ -17,6 +18,7 @@ const val POSTCODE = "postcode"
 const val PHONE = "phoneNumber"
 
 class EditProfileFragment : Fragment() {
+    val viewModel: ProfileViewModel by activityViewModels()
     lateinit var binding: FragmentEditProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +44,10 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun saveInSharedPref() {
+//        viewModel.saveInSharedPref(NAME,binding.nameEdt.text.toString())
+//        viewModel.saveInSharedPref(FADERNAME, binding.fatherNameEdt.text.toString())
+//        viewModel.saveInSharedPref(POSTCODE, binding.postcodeEdt.text.toString())
+//        viewModel.saveInSharedPref(PHONE, binding.phoneNumberEdt.text.toString())
         val shardPref = activity?.getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
         val editor = shardPref?.edit()?.apply {
             putString(NAME , binding.nameEdt.text.toString())
