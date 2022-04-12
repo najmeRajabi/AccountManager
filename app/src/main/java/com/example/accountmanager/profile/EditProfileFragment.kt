@@ -1,5 +1,7 @@
 package com.example.accountmanager.profile
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,10 @@ import androidx.core.text.isDigitsOnly
 import androidx.navigation.fragment.findNavController
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentEditProfileBinding
+const val NAME = "name"
+const val FADERNAME = "faderName"
+const val POSTCODE = "postcode"
+const val PHONE = "phoneNumber"
 
 class EditProfileFragment : Fragment() {
     lateinit var binding: FragmentEditProfileBinding
@@ -29,9 +35,21 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
          binding.registerBtn.setOnClickListener {
              if (checkFields()) {
+                 saveInSharedPref()
                  findNavController().navigate(R.id.action_editProfileFragment_to_showProfileFragment)
              }
          }
+    }
+
+    private fun saveInSharedPref() {
+        val shardPref = activity?.getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
+        val editor = shardPref?.edit()?.apply {
+            putString(NAME , binding.nameEdt.text.toString())
+            putString(FADERNAME, binding.fatherNameEdt.text.toString())
+            putString(POSTCODE, binding.postcodeEdt.text.toString())
+            putString(PHONE, binding.phoneNumberEdt.text.toString())
+            apply()
+        }
     }
 
     private fun checkFields(): Boolean {
