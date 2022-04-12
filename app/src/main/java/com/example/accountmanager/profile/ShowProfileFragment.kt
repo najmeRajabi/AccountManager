@@ -33,6 +33,14 @@ class ShowProfileFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.editProfileBtn.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
     private fun initViews() {
 
         getFromSharedPref()
