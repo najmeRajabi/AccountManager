@@ -8,4 +8,6 @@
     <string name="postcode">کد پستی:</string>
     <string name="register">ثبت اطلاعات</string>
     <string name="slider_desc">تعداد حساب هایی که مایل به ذخیره آن هستید:</string>
+    <string name="messageError">\" فیلد اجباری \"</string>
+    <string name="incorrectMessageError">لطفا شماره را صحیح وارد کنید</string>
 </resources>
