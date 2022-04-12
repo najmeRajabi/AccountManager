@@ -3,13 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="?attr/colorSecondary"
     tools:context=".account.ShowAccountFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_baseline_account_balance_24"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:text="@string/accountType"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_accountType"
+            android:text="@string/accountType"
+            style="@style/textFiledStyle.editText.show" />
+
+        <TextView
+            android:text="@string/accountNumber"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_accountNumber"
+            android:text="@string/accountNumber"
+            style="@style/textFiledStyle.editText.show" />
+
+        <TextView
+            android:text="@string/accountStock"
+            style="@style/textFiledStyle.editText.txvProfileStyle" />
+        <TextView
+            android:id="@+id/txv_accountStock"
+            android:text="@string/accountStock"
+            style="@style/textFiledStyle.editText.show" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backAccount_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:icon="@drawable/arrow_back"
+                android:layout_marginStart="10dp"
+                style="?attr/materialButtonOutlinedStyle"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextAccount_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/arrow_forward"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                style="?attr/materialButtonOutlinedStyle"/>
+        </LinearLayout>
 
     </LinearLayout>
 
