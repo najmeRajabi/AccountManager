@@ -19,4 +19,5 @@
     <string name="showAccounts">حساب ها</string>
     <string name="selectAccount">انتخاب حساب</string>
     <string name="deleteAll">حذف همه حساب ها</string>
+    <string name="accountManager">مدیر حساب ها</string>
 </resources>
