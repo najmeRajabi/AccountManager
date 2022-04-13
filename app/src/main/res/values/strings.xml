@@ -20,4 +20,6 @@
     <string name="selectAccount">انتخاب حساب</string>
     <string name="deleteAll">حذف همه حساب ها</string>
     <string name="accountManager">مدیر حساب ها</string>
+    <string name="enter_correct">لطفا شماره را صحیح وارد کنید!</string>
+    <string name="choose">انتخاب کنید</string>
 </resources>
