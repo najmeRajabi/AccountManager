@@ -1,9 +1,6 @@
 package com.example.accountmanager.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface AccountDao {
@@ -16,4 +13,10 @@ interface AccountDao {
 
     @Delete
     fun delete(account: Account)
+
+    @Delete
+    fun deleteAll()
+
+    @Update
+    fun update(account: Account)
 }
