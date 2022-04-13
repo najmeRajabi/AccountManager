@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentCreateAccountBinding
 
@@ -21,8 +22,8 @@ class CreateAccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_account, container, false)
+        binding = FragmentCreateAccountBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +31,8 @@ class CreateAccountFragment : Fragment() {
 
         val items = listOf("قرض الحسنه", "جاری", "بلند مدت", "کوتاه مدت")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item_account_type, items)
-        (binding.accountTypeEdt as? AutoCompleteTextView)?.setAdapter(adapter)
+        val txvAccountType = activity?.findViewById<AutoCompleteTextView>(R.id.accountType_edt)
+        txvAccountType?.setAdapter(adapter)
     }
 
 }

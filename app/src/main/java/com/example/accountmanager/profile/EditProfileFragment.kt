@@ -38,7 +38,8 @@ class EditProfileFragment : Fragment() {
          binding.registerBtn.setOnClickListener {
              if (checkFields()) {
                  saveInSharedPref()
-                 findNavController().navigate(R.id.action_editProfileFragment_to_showProfileFragment)
+                 activity?.onBackPressed()
+//                 findNavController().navigate(R.id.action_editProfileFragment_to_showProfileFragment)
              }
          }
     }

@@ -24,10 +24,11 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/box_accountType_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
 
             <AutoCompleteTextView
                 android:id="@+id/accountType_edt"

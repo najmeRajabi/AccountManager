@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentShowProfileBinding
 
@@ -37,7 +38,7 @@ class ShowProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.editProfileBtn.setOnClickListener {
-            activity?.onBackPressed()
+            findNavController().navigate(R.id.action_showProfileFragment_to_editProfileFragment)
         }
     }
 

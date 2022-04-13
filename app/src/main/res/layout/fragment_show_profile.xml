@@ -25,7 +25,8 @@
         <TextView
             android:id="@+id/txv_name"
             android:text="@string/fullName"
-            style="@style/textFiledStyle.editText.show" />
+            style="@style/textFiledStyle.editText.show"
+             />
 
         <TextView
             android:text="@string/faderName"
