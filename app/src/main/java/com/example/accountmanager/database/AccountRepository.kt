@@ -1,6 +1,7 @@
 package com.example.accountmanager.database
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 
 object AccountRepository {
 
@@ -23,12 +24,22 @@ object AccountRepository {
             )
     }
 
-    fun getQuestions() : List<Account>{
+    fun getAccounts() : List<Account>{
         return db!!.accountDao().getAllAccount()
     }
 
-    fun deleteAll(){
-        db?.accountDao()?.deleteAll()
+    fun getAccountLiveData() : LiveData<Account>
+    {
+        return db!!.accountDao().getAccountLiveData(1)
+    }
+
+    fun getAccount() : Account?
+    {
+        return db!!.accountDao().getAccount(1)
+    }
+
+    fun deleteAll(list: List<Account>){
+        db?.accountDao()?.deleteAll(list)
     }
 
     fun delete(account: Account){
@@ -39,7 +50,7 @@ object AccountRepository {
         db?.accountDao()?.insertAll(account)
     }
 
-    fun updateAccount(account: Account){
-        db?.accountDao()?.update(account)
-    }
+//    fun updateAccount(account: Account){
+//        db?.accountDao()?.update(account)
+//    }
 }
