@@ -31,6 +31,10 @@ object AccountRepository {
         db?.accountDao()?.deleteAll()
     }
 
+    fun delete(account: Account){
+        db?.accountDao()?.delete(account)
+    }
+
     fun insertAccount(account: Account){
         db?.accountDao()?.insertAll(account)
     }
