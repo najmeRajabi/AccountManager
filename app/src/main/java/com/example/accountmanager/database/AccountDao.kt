@@ -1,6 +1,7 @@
 package com.example.accountmanager.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -19,7 +20,7 @@ interface AccountDao {
     fun deleteAll(list: List<Account>)
 
     @Query("SELECT * FROM Account WHERE cartNumber=:n")
-    fun getAccountLiveData(n : Int) : LiveData<Account>
+    fun getAccountLiveData(n: Int) : LiveData<Account>
 
     @Query("SELECT * FROM Account WHERE cartNumber = :n LIMIT 1")
     fun getAccount( n : Int?) : Account?

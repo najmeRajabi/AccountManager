@@ -2,6 +2,7 @@ package com.example.accountmanager.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 object AccountRepository {
 
@@ -18,8 +19,8 @@ object AccountRepository {
 
     private fun addTestData() {
         accountDao?.insertAll(
-            Account("1","1","1"),
-            Account("2","2","2"),
+            Account(1,"1","1","1"),
+            Account(2,"2","2","2"),
 
             )
     }
@@ -28,9 +29,9 @@ object AccountRepository {
         return db!!.accountDao().getAllAccount()
     }
 
-    fun getAccountLiveData() : LiveData<Account>
+    fun getAccountLiveData(number: MutableLiveData<Int>) : LiveData<Account>
     {
-        return db!!.accountDao().getAccountLiveData(1)
+        return db!!.accountDao().getAccountLiveData(number.value!!)
     }
 
     fun getAccount() : Account?
