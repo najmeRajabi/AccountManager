@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.accountmanager.R
 import com.example.accountmanager.database.Account
@@ -36,17 +37,28 @@ class CreateAccountFragment : Fragment() {
         binding.createAccountBtn.setOnClickListener {
             if (checkField()){
                 saveToDatabase()
+                Toast.makeText(activity,"saved",Toast.LENGTH_SHORT).show()
+                emptyFiled()
             }
         }
 
     }
 
+    private fun emptyFiled() {
+        binding.accountNumberEdt.setText("")
+        binding.stockEdt.setText("")
+        binding.accountTypeEdt.setText("")
+    }
+
     private fun saveToDatabase() {
-        var account = Account(
-            binding.accountTypeEdt.text.toString(),
-            binding.accountNumberEdt.text.toString(),
-            binding.stockEdt.text.toString()
-        )
+        var account =
+            Account(
+                3,
+                binding.accountTypeEdt.text.toString(),
+                binding.accountNumberEdt.text.toString(),
+                binding.stockEdt.text.toString()
+            )
+
         vModel.insert(account)
     }
 
