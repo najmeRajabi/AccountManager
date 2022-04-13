@@ -15,4 +15,8 @@
     <string name="accountType">نوع حساب</string>
     <string name="accountNumber">شماره حساب</string>
     <string name="accountStock">"موجودی "</string>
+    <string name="account">پروفایل</string>
+    <string name="showAccounts">حساب ها</string>
+    <string name="selectAccount">انتخاب حساب</string>
+    <string name="deleteAll">حذف همه حساب ها</string>
 </resources>
