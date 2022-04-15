@@ -10,6 +10,9 @@ interface AccountDao {
     @Query("SELECT * FROM Account")
     fun getAllAccount() : List<Account>
 
+    @Query("SELECT * FROM Account")
+    fun getAllAccountLiveData() : LiveData<List<Account>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg  account: Account)
 
@@ -19,11 +22,12 @@ interface AccountDao {
     @Delete
     fun deleteAll(list: List<Account>)
 
-    @Query("SELECT * FROM Account WHERE cartNumber=:n")
+    @Query("SELECT * FROM Account WHERE number = :n")
     fun getAccountLiveData(n: Int) : LiveData<Account>
 
-    @Query("SELECT * FROM Account WHERE cartNumber = :n LIMIT 1")
-    fun getAccount( n : Int?) : Account?
+
+    @Query("SELECT * FROM Account WHERE number = :n LIMIT 1")
+    fun getAccount( n : Int) : Account
 
 //    @Update
 //    fun update(account: Account)
