@@ -1,13 +1,16 @@
 package com.example.accountmanager.account
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentShowAccountBinding
+import com.google.android.material.snackbar.Snackbar
 
 class ShowAccountFragment : Fragment() {
 
@@ -33,19 +36,46 @@ class ShowAccountFragment : Fragment() {
         initViews()
         binding.nextAccountBtn.setOnClickListener {
             vModel.nextAccount()
+
+        }
+        binding.backAccountBtn.setOnClickListener {
+            vModel.prevAccount()
         }
     }
 
     private fun initViews() {
+//
+//        vModel.AllAccountLiveData.observe(requireActivity()){
+//            for (item in it){
+//                Log.d("TAG", "initViews: ${item.cartNumber}+${vModel.counter}")
+//
+//            }
+//           val accountFilter=it.find { it.number == vModel.counter  }
+//            binding.txvAccountNumber.text = accountFilter?.cartNumber
+//            binding.txvAccountStock.text = accountFilter?.stock
+//            binding.txvAccountType.text = accountFilter?.AccountType
+//        }
+
 
         if (vModel.account == null){
-            //todo show empty
+
+            Toast.makeText(activity,"no data yet",Toast.LENGTH_SHORT).show()
+
         }else {
 
-            vModel.account.observe(requireActivity()) {
-                binding.txvAccountNumber.text = it.cartNumber
-                binding.txvAccountStock.text = it.stock
-                binding.txvAccountType.text = it.AccountType
+            activity?.let { activity ->
+                vModel.account!!.observe(activity) {
+                    binding.txvAccountNumber.text = it.cartNumber
+                    binding.txvAccountStock.text = it.stock
+                    binding.txvAccountType.text = it.AccountType
+                }
+            }
+
+            vModel.enableNextBtn.observe(requireActivity()){
+                binding.nextAccountBtn.isEnabled = it
+            }
+            vModel.enableBackBtn.observe(requireActivity()){
+                binding.backAccountBtn.isEnabled = it
             }
         }
     }
