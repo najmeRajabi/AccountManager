@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.accountmanager.R
 import com.example.accountmanager.databinding.FragmentShowProfileBinding
 
 class ShowProfileFragment : Fragment() {
 
+    val vModel: ProfileViewModel by activityViewModels()
     lateinit var binding: FragmentShowProfileBinding
     var name =""
     var faderName = ""
@@ -56,11 +58,16 @@ class ShowProfileFragment : Fragment() {
     }
 
     private fun getFromSharedPref() {
-        val shardPref = activity?.getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
 
-        name = shardPref?.getString(NAME,"name").toString()
-        faderName = shardPref?.getString(FADERNAME,"fader").toString()
-        postcode = shardPref?.getString(POSTCODE,"postcode").toString()
-        phone = shardPref?.getString(PHONE,"phoneNumber").toString()
+        name= vModel.getFromSharedPref(NAME).toString()
+        faderName = vModel.getFromSharedPref(FADERNAME).toString()
+        postcode = vModel.getFromSharedPref(POSTCODE).toString()
+        phone = vModel.getFromSharedPref(PHONE).toString()
+//        val shardPref = activity?.getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
+//
+//        name = shardPref?.getString(NAME,"name").toString()
+//        faderName = shardPref?.getString(FADERNAME,"fader").toString()
+//        postcode = shardPref?.getString(POSTCODE,"postcode").toString()
+//        phone = shardPref?.getString(PHONE,"phoneNumber").toString()
     }
 }
