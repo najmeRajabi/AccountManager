@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Account(
-    val number :Int,
+    @PrimaryKey(autoGenerate = true)val number :Int,
     val AccountType:String,
-    @PrimaryKey val cartNumber: String,
+    val cartNumber: String,
     val stock: String //موجودی
 ) {
 }

@@ -22,8 +22,8 @@ interface AccountDao {
     @Delete
     fun deleteAll(list: List<Account>)
 
-    @Query("SELECT * FROM Account WHERE number = :n")
-    fun getAccountLiveData(n: Int) : LiveData<Account>
+    @Query("SELECT * FROM Account WHERE number = :n LIMIT 1")
+    fun getAccountLiveData( n : Int?) : LiveData<Account>?
 
 
     @Query("SELECT * FROM Account WHERE number = :n LIMIT 1")

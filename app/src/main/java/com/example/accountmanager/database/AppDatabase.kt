@@ -5,15 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Account::class], version = 1)
-abstract class AppDatabase :RoomDatabase(){
-    abstract fun accountDao():AccountDao
+@Database(entities = [Account::class] , version = 1)
+abstract class AppDatabase:RoomDatabase() {
 
+    abstract fun accountDao(): AccountDao
 
-    companion object{
+    companion object {
         var INSTANCE: AppDatabase? = null
 
-        fun getAppDatabase(context: Context):AppDatabase?{
+        fun getAppDataBase(context: Context): AppDatabase? {
             if (INSTANCE == null){
                 synchronized(AppDatabase::class){
                     INSTANCE =
@@ -23,11 +23,10 @@ abstract class AppDatabase :RoomDatabase(){
                             .build()
                 }
             }
-
             return INSTANCE
         }
 
-        fun destroyDatabase(){
+        fun destroyDataBase(){
             INSTANCE = null
         }
     }

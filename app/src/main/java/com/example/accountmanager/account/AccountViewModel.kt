@@ -1,7 +1,7 @@
 package com.example.accountmanager.account
 
 import android.app.Application
-import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -14,24 +14,26 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
 
     var counter = 1
     val context = app.applicationContext
-    val numberAccount = MutableLiveData<Int>(0)
+    val numberAccount = MutableLiveData<Int>(1)
 //    val size = MutableLiveData<Int>(1)
 
     private lateinit var  accountList : List<Account>
-    var account  : LiveData<Account>?
+    lateinit var account  : LiveData<Account>
     var enableNextBtn = MutableLiveData(true)
     var enableBackBtn = MutableLiveData(false)
 
-    lateinit var AllAccountLiveData:LiveData<List<Account>>
+    lateinit var allAccountLiveData:LiveData<List<Account>>
 
     init{
-        AccountRepository.initDB(app.applicationContext)
+        AccountRepository.initDB(context)
         accountList = AccountRepository.getAccounts()
 //        size.value= accountList.size
-        account= AccountRepository.getAccountLiveData(numberAccount)
+        account= numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
+        Log.d("TAG", "vm: ${account.value?.stock}")
 //        account.value = accountList[0]
 
-        AllAccountLiveData = AccountRepository.getAllAccountLiveData()
+        allAccountLiveData = AccountRepository.getAllAccountLiveData()
+//        account = numberAccount.value?.let { allAccountLiveData.value?.get(it) }
     }
 
     fun insert(account: Account){
@@ -50,11 +52,13 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
 
     fun nextAccount() {
         counter++
-        AllAccountLiveData = AccountRepository.getAllAccountLiveData()
+        allAccountLiveData = AccountRepository.getAllAccountLiveData()
         enableBackBtn.value=true
         numberAccount.value = numberAccount.value?.plus(1)
-        account = AccountRepository.getAccountLiveData(numberAccount)
-        Toast.makeText(context,"next",Toast.LENGTH_SHORT).show()
+        accountList = AccountRepository.getAccounts()
+        account = numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
+        Log.d("TAG", "vm: ${account.value?.stock}")
+        Toast.makeText(context,"next ${numberAccount.value}",Toast.LENGTH_SHORT).show()
         if (numberAccount.value == accountList.size){
             enableNextBtn.value = false
         }
@@ -65,7 +69,9 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
         counter--
         enableNextBtn.value = true
         numberAccount.value = numberAccount.value?.minus(1)
-        account = AccountRepository.getAccountLiveData(numberAccount)
+        accountList = AccountRepository.getAccounts()
+        account = numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
+        Log.d("TAG", "vm: ${account.value?.stock}")
         Toast.makeText(context,"back",Toast.LENGTH_SHORT).show()
         if (numberAccount.value == 1){
             enableBackBtn.value = false

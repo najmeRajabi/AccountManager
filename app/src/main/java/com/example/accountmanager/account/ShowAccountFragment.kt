@@ -57,26 +57,21 @@ class ShowAccountFragment : Fragment() {
 //        }
 
 
-        if (vModel.account == null){
+        vModel.account.observe(requireActivity()) {
+            binding.txvAccountNumber.text = it.cartNumber
+            binding.txvAccountStock.text = it.stock
+            binding.txvAccountType.text = it.AccountType
 
-            Toast.makeText(activity,"no data yet",Toast.LENGTH_SHORT).show()
+        }
+        vModel.numberAccount.observe(requireActivity()) {
+            binding.txvAccountStock.text = it.toString()
+        }
 
-        }else {
-
-            activity?.let { activity ->
-                vModel.account!!.observe(activity) {
-                    binding.txvAccountNumber.text = it.cartNumber
-                    binding.txvAccountStock.text = it.stock
-                    binding.txvAccountType.text = it.AccountType
-                }
-            }
-
-            vModel.enableNextBtn.observe(requireActivity()){
-                binding.nextAccountBtn.isEnabled = it
-            }
-            vModel.enableBackBtn.observe(requireActivity()){
-                binding.backAccountBtn.isEnabled = it
-            }
+        vModel.enableNextBtn.observe(requireActivity()) {
+            binding.nextAccountBtn.isEnabled = it
+        }
+        vModel.enableBackBtn.observe(requireActivity()) {
+            binding.backAccountBtn.isEnabled = it
         }
     }
 

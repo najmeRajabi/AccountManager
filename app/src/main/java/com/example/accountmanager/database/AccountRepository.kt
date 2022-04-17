@@ -7,13 +7,16 @@ import androidx.lifecycle.MutableLiveData
 
 object AccountRepository {
 
-    lateinit var db : AppDatabase
+    var db : AppDatabase? = null
     var accountDao :AccountDao? = null
+    lateinit var account : LiveData<Account>
 
     fun initDB(context : Context){
-        db = AppDatabase.getAppDatabase(context)!!
+        db = AppDatabase.getAppDataBase(context)!!
 
         accountDao = db?.accountDao()
+
+        account = accountDao?.getAccountLiveData(1)!!
 
         addTestData()
     }
@@ -33,23 +36,27 @@ object AccountRepository {
         return db!!.accountDao().getAllAccount()
     }
 
-    fun getAccountLiveData(number: MutableLiveData<Int>) : LiveData<Account>?
-    {
-        if (number.value?.let { accountDao?.getAccountLiveData(3) } == null){
-            Log.d("TAG", "getAccountLiveData: ${number.value?.let { accountDao?.getAccountLiveData(it)?.value?.AccountType }} ")
-        }else{
-            Log.d("TAG", "getAccountLiveData:2 ${ getAccount(3)?.cartNumber } ")
-        }
-        return number.value?.let { accountDao?.getAccountLiveData(it) }
+//    fun getAccountLiveData(number: MutableLiveData<Int>) : LiveData<Account>?
+//    {
+//        if (number.value?.let { accountDao?.getAccountLiveData(number.value!!) } == null){
+//            Log.d("TAG", "getAccountLiveData: ${number.value?.let { accountDao?.getAccountLiveData(it)?.value?.AccountType }} ")
+//        }else{
+//            Log.d("TAG", "getAccountLiveData:2 ${ accountDao?.getAccountLiveData(number.value!!)?.value } ")
+//        }
+//        return number.value?.let { accountDao?.getAccountLiveData(it) }
+//    }
+    fun getAccountLiveData(number: Int): LiveData<Account>? {
+        Log.d("TAG", "account type ${account.value?.AccountType}")
+        return accountDao!!.getAccountLiveData(number)
     }
 
     fun getAccount(number:Int) : Account?
     {
-        return db.accountDao().getAccount(number)
+        return db!!.accountDao().getAccount(number)
     }
 
     fun deleteAll(list: List<Account>){
-        db?.accountDao().deleteAll(list)
+        db?.accountDao()!!.deleteAll(list)
     }
 
     fun delete(account: Account){
@@ -61,7 +68,7 @@ object AccountRepository {
     }
 
     fun getAllAccountLiveData(): LiveData<List<Account>> {
-        return db.accountDao().getAllAccountLiveData()
+        return db!!.accountDao().getAllAccountLiveData()
     }
 
 //    fun updateAccount(account: Account){
