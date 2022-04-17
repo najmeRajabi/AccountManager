@@ -22,4 +22,10 @@ class ProfileViewModel(app:Application):AndroidViewModel(app) {
             .getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
         return sharedPref.getString(name,"empty")
     }
+
+    fun checkRegistered(): Boolean {
+        val sharedPref = context
+            .getSharedPreferences("HW13Profile", Context.MODE_PRIVATE)
+        return sharedPref.getString(NAME,"empty") != "empty"
+    }
 }

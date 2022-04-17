@@ -31,6 +31,9 @@ class ShowProfileFragment : Fragment() {
         binding = FragmentShowProfileBinding.inflate(layoutInflater, container, false)
 
 
+        if (!vModel.checkRegistered()){
+            findNavController().navigate(R.id.action_showProfileFragment_to_editProfileFragment)
+        }
         initViews()
 
         return binding.root
