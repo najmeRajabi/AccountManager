@@ -1,5 +1,6 @@
 package com.example.accountmanager.account
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -43,6 +44,7 @@ class ShowAccountFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun initViews() {
 //
 //        vModel.AllAccountLiveData.observe(requireActivity()){
@@ -56,22 +58,29 @@ class ShowAccountFragment : Fragment() {
 //            binding.txvAccountType.text = accountFilter?.AccountType
 //        }
 
+        if (vModel.account == null) {
+            binding.llImvNoAccount.visibility = View.VISIBLE
+            binding.llShowAccount.visibility = View.GONE
+            binding.parentShowAccount.setBackgroundColor(R.color.white)
+        } else {
 
-        vModel.account.observe(requireActivity()) {
-            binding.txvAccountNumber.text = it.cartNumber
-            binding.txvAccountStock.text = it.stock
-            binding.txvAccountType.text = it.AccountType
 
-        }
-        vModel.numberAccount.observe(requireActivity()) {
-            binding.txvAccountStock.text = it.toString()
-        }
+            vModel.account.observe(requireActivity()) {
+                binding.txvAccountNumber.text = it.cartNumber
+                binding.txvAccountStock.text = it.stock
+                binding.txvAccountType.text = it.AccountType
 
-        vModel.enableNextBtn.observe(requireActivity()) {
-            binding.nextAccountBtn.isEnabled = it
-        }
-        vModel.enableBackBtn.observe(requireActivity()) {
-            binding.backAccountBtn.isEnabled = it
+            }
+            vModel.numberAccount.observe(requireActivity()) {
+                binding.txvAccountStock.text = it.toString()
+            }
+
+            vModel.enableNextBtn.observe(requireActivity()) {
+                binding.nextAccountBtn.isEnabled = it
+            }
+            vModel.enableBackBtn.observe(requireActivity()) {
+                binding.backAccountBtn.isEnabled = it
+            }
         }
     }
 
