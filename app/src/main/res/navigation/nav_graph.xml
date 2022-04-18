@@ -29,4 +29,9 @@
         android:name="com.example.accountmanager.account.ShowAccountFragment"
         android:label="fragment_show_account"
         tools:layout="@layout/fragment_show_account" />
+    <fragment
+        android:id="@+id/selectAccountFragment"
+        android:name="com.example.accountmanager.account.SelectAccountFragment"
+        android:label="fragment_select_account"
+        tools:layout="@layout/fragment_select_account" />
 </navigation>
