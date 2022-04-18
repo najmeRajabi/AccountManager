@@ -19,6 +19,7 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
 
     private lateinit var  accountList : List<Account>
     lateinit var account  : LiveData<Account>
+//    var account : Account?
     var enableNextBtn = MutableLiveData(true)
     var enableBackBtn = MutableLiveData(false)
 
@@ -27,6 +28,7 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
     init{
         AccountRepository.initDB(context)
         accountList = AccountRepository.getAccounts()
+//        account = numberAccount.value?.let { AccountRepository.getAccount(it) }
 //        size.value= accountList.size
         account= numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
         Log.d("TAG", "vm: ${account.value?.stock}")
@@ -58,6 +60,7 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
         accountList = AccountRepository.getAccounts()
         account = numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
         Log.d("TAG", "vm: ${account.value?.stock}")
+//        account = numberAccount.value?.let { AccountRepository.getAccount(it) }
         Toast.makeText(context,"next ${numberAccount.value}",Toast.LENGTH_SHORT).show()
         if (numberAccount.value == accountList.size){
             enableNextBtn.value = false
@@ -72,10 +75,15 @@ class AccountViewModel(app:Application):AndroidViewModel(app) {
         accountList = AccountRepository.getAccounts()
         account = numberAccount.value?.let { AccountRepository.getAccountLiveData(it) }!!
         Log.d("TAG", "vm: ${account.value?.stock}")
+//        account = numberAccount.value?.let { AccountRepository.getAccount(it) }
         Toast.makeText(context,"back",Toast.LENGTH_SHORT).show()
         if (numberAccount.value == 1){
             enableBackBtn.value = false
         }
+    }
+
+    fun getAccountByCartNumber(cartNumber: String): Account? {
+        return AccountRepository.getAccountByCartNumber(cartNumber)
     }
 
 //    fun update(account: Account){

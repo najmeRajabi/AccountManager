@@ -26,7 +26,7 @@ object AccountRepository {
             Account(1,"11111","13333","122222"),
             Account(2,"2111111","233333","222222"),
             Account(3,"3","3","3"),
-            Account(4,"4","4","4")
+            Account(4,"4","4444444444444","4")
 
             )
     }
@@ -69,6 +69,10 @@ object AccountRepository {
 
     fun getAllAccountLiveData(): LiveData<List<Account>> {
         return db!!.accountDao().getAllAccountLiveData()
+    }
+
+    fun getAccountByCartNumber(cartNumber: String): Account? {
+        return accountDao?.getAccountByCartNumber(cartNumber)
     }
 
 //    fun updateAccount(account: Account){
