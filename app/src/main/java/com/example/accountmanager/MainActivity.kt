@@ -1,11 +1,13 @@
 package com.example.accountmanager
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf( R.id.showProfileFragment, R.id.showAccountFragment,
-                R.id.createAccountFragment,R.id.chooseAccountFragment,
+                R.id.createAccountFragment,R.id.selectAccountFragment,
             R.id.deleteAllAccountBtn),
             binding.drawerLayout )
         toolbar.setupWithNavController(navController,appBarConfiguration)
@@ -46,9 +48,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId){
 
                 R.id.deleteAllAccountBtn -> {
-                    //todo dialog sure
-                   vModel.deleteAll()
-                    Toast.makeText(this,"deleted",Toast.LENGTH_SHORT).show()
+                    showDefaultDialog()
                     true
                 }
             }
@@ -66,4 +66,25 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
+
+    private fun showDefaultDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+
+        alertDialog.apply {
+//            setIcon(R.drawable.ic_hello)
+            setTitle("مطمئن هستید؟؟")
+            setMessage("تمامی حساب های ذخیره شده شما پاک خواهد شد!")
+            setPositiveButton("مطمئنم") { _, _ ->
+                toast("deleted")
+                vModel.deleteAll()
+            }
+            setNegativeButton("نه") { _, _ ->
+                // dismiss
+            }
+
+        }.create().show()
+
+    }
+
+    private fun toast(text: String) = Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 }

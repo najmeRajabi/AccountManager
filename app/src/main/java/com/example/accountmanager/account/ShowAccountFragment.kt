@@ -61,9 +61,10 @@ class ShowAccountFragment : Fragment() {
         if (vModel.account == null) {
             binding.llImvNoAccount.visibility = View.VISIBLE
             binding.llShowAccount.visibility = View.GONE
-            binding.parentShowAccount.setBackgroundColor(R.color.white)
+            binding.parentShowAccount.setBackgroundResource(R.color.white)
         } else {
 
+            binding.parentShowAccount.setBackgroundResource(com.google.android.material.R.color.design_default_color_secondary)
 
             vModel.account.observe(requireActivity()) {
                 binding.txvAccountNumber.text = it.cartNumber
@@ -71,6 +72,12 @@ class ShowAccountFragment : Fragment() {
                 binding.txvAccountType.text = it.AccountType
 
             }
+//            vModel.account.apply {
+//                binding.txvAccountNumber.text = this?.cartNumber
+//                binding.txvAccountStock.text = this?.stock
+//                binding.txvAccountType.text = this?.AccountType
+//
+//            }
             vModel.numberAccount.observe(requireActivity()) {
                 binding.txvAccountStock.text = it.toString()
             }

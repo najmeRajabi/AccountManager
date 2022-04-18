@@ -53,7 +53,7 @@ class CreateAccountFragment : Fragment() {
     private fun saveToDatabase() {
         var account =
             Account(
-                3,
+                0,
                 binding.accountTypeEdt.text.toString(),
                 binding.accountNumberEdt.text.toString(),
                 binding.stockEdt.text.toString()

@@ -23,4 +23,5 @@
     <string name="enter_correct">لطفا شماره را صحیح وارد کنید!</string>
     <string name="choose">انتخاب کنید</string>
     <string name="noAccountYet">هنوز هیچ حسابی وارد نشده!</string>
+    <string name="chooseAccount">انتخاب حساب</string>
 </resources>

@@ -18,7 +18,7 @@
         android:icon="@drawable/ic_baseline_account_balance_24"/>
 
     <item
-        android:id="@+id/chooseAccountFragment"
+        android:id="@+id/selectAccountFragment"
         android:title="@string/selectAccount"
         android:icon="@drawable/ic_baseline_find_in_page_24"/>
 
