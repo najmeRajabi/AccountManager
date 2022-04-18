@@ -29,6 +29,9 @@ interface AccountDao {
     @Query("SELECT * FROM Account WHERE number = :n LIMIT 1")
     fun getAccount( n : Int) : Account
 
+    @Query("SELECT * FROM Account WHERE cartNumber = :cartNumber LIMIT 1")
+    fun getAccountByCartNumber(cartNumber :String) :Account
+
 //    @Update
 //    fun update(account: Account)
 }
